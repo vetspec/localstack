@@ -14,9 +14,11 @@ from localstack.utils.common import is_alpine, short_uid
 if TYPE_CHECKING:
     from mypy_boto3_apigateway import APIGatewayClient
     from mypy_boto3_cloudformation import CloudFormationClient
+    from mypy_boto3_cloudwatch import CloudWatchClient
     from mypy_boto3_dynamodb import DynamoDBClient
     from mypy_boto3_es import ElasticsearchServiceClient
     from mypy_boto3_events import EventBridgeClient
+    from mypy_boto3_firehose import FirehoseClient
     from mypy_boto3_iam import IAMClient
     from mypy_boto3_kinesis import KinesisClient
     from mypy_boto3_kms import KMSClient
@@ -130,6 +132,16 @@ def ses_client() -> "SESClient":
 @pytest.fixture(scope="class")
 def es_client() -> "ElasticsearchServiceClient":
     return _client("es")
+
+
+@pytest.fixture(scope="class")
+def firehose_client() -> "FirehoseClient":
+    return _client("firehose")
+
+
+@pytest.fixture(scope="class")
+def cloudwatch_client() -> "CloudWatchClient":
+    return _client("cloudwatch")
 
 
 @pytest.fixture
